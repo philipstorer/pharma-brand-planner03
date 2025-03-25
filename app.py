@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import os
 import openai
-from openai import ChatCompletion  # Import the ChatCompletion class directly
 
 # Set your OpenAI API key (for production, load from an environment variable instead)
 openai.api_key = "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"
@@ -107,7 +106,8 @@ def get_tactics_for_lifecycle_and_si(df_sheet4, lifecycle_index, si_row_indices)
 
 def ai_generate(prompt, max_tokens=300, temperature=0.7):
     try:
-        response = ChatCompletion.create(
+        # Call ChatCompletion via the openai module
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful marketing strategist."},
